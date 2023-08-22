@@ -1,0 +1,5 @@
+server/gitserver
+server/node_modules
+server/package-lock.json
+server/.env
+.vscode
