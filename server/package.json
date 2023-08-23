@@ -12,7 +12,9 @@
     "fs": "^0.0.1-security",
     "mongodb": "^4.11.0",
     "node-ts": "^6.0.1",
-    "simple-git": "^3.19.1"
+    "simple-git": "^3.19.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0"
   },
   "scripts": {
     "start": "nodemon app.ts ",
@@ -23,6 +25,8 @@
   },
   "devDependencies": {
     "@types/node": "^18.11.9",
+    "@types/swagger-jsdoc": "^6.0.1",
+    "@types/swagger-ui-express": "^4.1.3",
     "eslint": "^8.27.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",

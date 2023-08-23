@@ -13,9 +13,8 @@ const accessAsync = promisify(fs.access);
 
 class GitManager {
   git: any;
-
   policyDir: string = "";
-  init() {
+  init = handleAsync(() => {
     this.policyDir = path.join(__dirname, "/../gitserver");
     this.isDirExist().then((isExist) => {
       if (!isExist) {
@@ -28,7 +27,7 @@ class GitManager {
         this.pull();
       }
     });
-  }
+  });
 
   isDirExist = handleAsync(async (): Promise<boolean> => {
     await accessAsync(this.policyDir, fs.constants.F_OK);
