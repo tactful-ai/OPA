@@ -3,7 +3,8 @@
     "admin",
     "user",
     "guest",
-    "writer"
+    "writer",
+    "manger"
   ],
   "resources": {
     "book": [
