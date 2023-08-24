@@ -1,22 +1,65 @@
 {
-  "roles": ["admin", "user", "guest"],
+  "roles": [
+    "admin",
+    "user",
+    "guest",
+    "writer"
+  ],
   "resources": {
-    "book": ["read", "order", "review"],
-    "document": ["read", "order", "review"],
-    "email": ["read", "send"]
+    "book": [
+      "read",
+      "order",
+      "review"
+    ],
+    "document": [
+      "read",
+      "order",
+      "review"
+    ],
+    "email": [
+      "read",
+      "send"
+    ]
   },
-  "scopes": ["read", "order", "review", "send"],
+  "scopes": [
+    "read",
+    "order",
+    "review",
+    "send"
+  ],
   "permissions": {
     "book": {
-      "read": ["user", "guest"],
-      "order": ["user"],
-      "review": ["user"]
+      "read": [
+        "user",
+        "guest"
+      ],
+      "order": [
+        "user"
+      ],
+      "review": [
+        "user"
+      ]
     },
     "document": {
-      "read": ["user", "guest"],
-      "order": ["user"],
-      "review": ["user"]
+      "read": [
+        "user",
+        "guest"
+      ],
+      "order": [
+        "user"
+      ],
+      "review": [
+        "user"
+      ]
     },
-    "email": { "read": ["user", "guest"], "send": ["user"] }
+    "email": {
+      "read": [
+        "user",
+        "guest"
+      ],
+      "send": [
+        "user"
+      ]
+    }
   }
 }
