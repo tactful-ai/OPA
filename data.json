@@ -1,11 +1,21 @@
 {
   "roles": [
-    "admin",
-    "user",
-    "guest",
-    "writer",
-    "manger",
-    "co-manger"
+      {
+      "role": "admin",
+      "description": "admin role"
+    },
+    {
+      "role": "writer",
+      "description": "admin writer"
+    },
+    {
+      "role": "guest",
+      "description": "admin guest"
+    },
+    {
+      "role": "user",
+      "description": "admin user"
+    }
   ],
   "resources": {
     "book": [
