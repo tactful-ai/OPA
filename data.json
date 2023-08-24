@@ -6,15 +6,15 @@
     },
     {
       "role": "writer",
-      "description": "admin writer"
+      "description": " writer role"
     },
     {
       "role": "guest",
-      "description": "admin guest"
+      "description": "guest role"
     },
     {
       "role": "user",
-      "description": "admin user"
+      "description": "user role"
     }
   ],
   "resources": {
