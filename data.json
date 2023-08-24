@@ -16,7 +16,11 @@
       "role": "user",
       "description": "user role"
     },
-    "co-manger"
+    "co-manger",
+    {
+      "role": "co-manger",
+      "description": "manger secound chair"
+    }
   ],
   "resources": {
     "book": [
