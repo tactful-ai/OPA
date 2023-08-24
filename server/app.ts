@@ -2,6 +2,7 @@
 import bodyParser from "body-parser";
 import express from "express";
 import retrieveRoutes from "./routes/retrieve";
+import editRouter from "./routes/edit";
 import gitManager from "./services/gitManger";
 
 import { setupSwagger } from "./services/swagger";
@@ -15,6 +16,7 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 app.use(retrieveRoutes);
+app.use(editRouter);
 // Error handling middleware
 app.use(
   (
