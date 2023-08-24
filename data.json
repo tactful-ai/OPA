@@ -1,6 +1,6 @@
 {
   "roles": [
-      {
+    {
       "role": "admin",
       "description": "admin role"
     },
@@ -15,7 +15,8 @@
     {
       "role": "user",
       "description": "user role"
-    }
+    },
+    "co-manger"
   ],
   "resources": {
     "book": [
