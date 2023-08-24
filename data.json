@@ -4,7 +4,8 @@
     "user",
     "guest",
     "writer",
-    "manger"
+    "manger",
+    "co-manger"
   ],
   "resources": {
     "book": [
