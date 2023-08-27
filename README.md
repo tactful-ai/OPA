@@ -54,6 +54,29 @@ To get started, ensure you have the following prerequisites installed on your sy
 - [Docker Compose](https://docs.docker.com/compose/install/)
 - [Node.js](https://nodejs.org/) (for running the Node.js server)
 
+
+## Configurations
+ **OPAL**:
+  - Edit the `server/docker-compose.yaml` :
+   ```bash
+   cd server
+   nano docker-compose.yaml
+   ```
+   - Set the following environment variables:
+   ```yaml
+   environment:
+     OPAL_POLICY_REPO_URL: <your_rego_code_repo_url>
+     OPAL_POLICY_REPO_WEBHOOK_SECRET: <your_webhook_secret>
+   ```
+ **NodeJs server**:
+ 
+ - Open the `server/.env` file in an editor and set the required environment variables:
+   ```dotenv
+   GIT_REPO=<your_rego_code_repo_url_with_token>
+   OPAL_URL=http://opalHostName:7002
+   PORT: <port_to_run_the_server_default_3000>
+   ```
+
 ## Step 1: Running OPAL using Docker Compose
 
 1. Clone the OPAL repository:
@@ -66,25 +89,15 @@ To get started, ensure you have the following prerequisites installed on your sy
    cd OPA/server
    ```
 
-3. Edit the `docker-compose.yaml` file:
-   ```bash
-   nano docker-compose.yaml
-   ```
-   Set the following environment variables:
-   ```yaml
-   environment:
-     OPAL_POLICY_REPO_URL: <your_rego_code_repo_url>
-     OPAL_POLICY_REPO_WEBHOOK_SECRET: <your_webhook_secret>
-   ```
 
-4. Start OPAL using Docker Compose:
+3. Start OPAL using Docker Compose:
    ```bash
    docker-compose up
    ```
 
-5. OPAL should now be up and running, tracking the specified policy repository.
+4. OPAL should now be up and running, tracking the specified policy repository.
 
-6. **Webhook Configuration**:
+5. **Webhook Configuration**:
    - Access the settings of your GitHub repository.
    - Go to "Webhooks" or "Hooks" depending on your GitHub version.
    - Add a new webhook:
@@ -99,29 +112,17 @@ To get started, ensure you have the following prerequisites installed on your sy
    cd OPA/server
    ```
 
-2. Create a `.env` file in the server directory:
-   ```bash
-   touch .env
-   ```
-
-3. Open the `.env` file in an editor and set the required environment variables:
-   ```dotenv
-   GIT_REPO=<your_rego_code_repo_url_with_token>
-   OPAL_URL=http://opalHostName:7002
-   PORT: <port_to_run_the_server_default_3000>
-   ```
-
-4. Install the Node.js server dependencies:
+2. Install the Node.js server dependencies:
    ```bash
    npm install
    ```
 
-5. Start the Node.js server:
+3. Start the Node.js server:
    ```bash
    npm start
    ```
 
-6. The Node.js server should now be running and communicating with the OPAL dashboard.
+4. The Node.js server should now be running and communicating with the OPAL dashboard.
 
 ## Documentation
 
@@ -193,7 +194,7 @@ Managing permissions in OPAL is a straightforward process that empowers you to f
        }
        ```
 
-Congratulations! You've now configured the permissions. The DB-administrator role can effectively manage and access the DB resource based on the specified permissions.
+5. **Congratulations!** You've now configured the permissions. The DB-administrator role can effectively manage and access the DB resource based on the specified permissions.
 
 
 
