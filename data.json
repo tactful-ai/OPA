@@ -19,10 +19,6 @@
     {
       "role": "co-manger",
       "description": "manger secound chair"
-    },
-    {
-      "role": "co-cotch",
-      "description": "co-cotch secound chair"
     }
   ],
   "resources": {
