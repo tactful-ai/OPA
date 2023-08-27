@@ -32,7 +32,11 @@
       "read",
       "send"
     ],
-    "movie": []
+    "movie": [],
+    "office": [
+      "get",
+      "delete"
+    ]
   },
   "scopes": [
     "read",
