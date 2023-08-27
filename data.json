@@ -23,6 +23,10 @@
     {
       "role": "content writer",
       "description": "writes content"
+    },
+    {
+      "role": "moderator",
+      "description": "monitors posts"
     }
   ],
   "resources": {
