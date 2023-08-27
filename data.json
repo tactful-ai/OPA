@@ -75,6 +75,11 @@
       "send": [
         "user"
       ]
+    },
+    "movie": {
+      "rate": [
+        "user"
+      ]
     }
   }
 }
