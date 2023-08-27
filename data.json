@@ -31,6 +31,10 @@
     {
       "role": "maintainer",
       "description": "updates policies"
+    },
+    {
+      "role": "bot",
+      "description": "monitors posts"
     }
   ],
   "resources": {
