@@ -34,8 +34,7 @@
     ],
     "movie": [
       "watch",
-      "rate",
-      "get"
+      "rate"
     ]
   },
   "scopes": [
