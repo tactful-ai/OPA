@@ -4,7 +4,6 @@ import express from "express";
 import retrieveRoutes from "./routes/retrieve";
 import editRouter from "./routes/edit";
 import gitManager from "./services/gitManger";
-
 import { setupSwagger } from "./services/swagger";
 require("dotenv").config();
 
@@ -14,6 +13,10 @@ const port = process.env.PORT || 3000;
 
 // Middleware
 app.use(bodyParser.json());
+import cors from "cors";
+
+app.use(cors({ origin: "*" }));
+
 
 app.use(retrieveRoutes);
 app.use(editRouter);
@@ -29,6 +32,7 @@ app.use(
     res.status(500).json({ error: "Internal server error" });
   }
 );
+
 
 // Setup swagger
 setupSwagger(app);
