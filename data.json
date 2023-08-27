@@ -31,7 +31,8 @@
     "email": [
       "read",
       "send"
-    ]
+    ],
+    "movie": []
   },
   "scopes": [
     "read",
