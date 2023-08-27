@@ -15,6 +15,10 @@
     {
       "role": "user",
       "description": "user role"
+    },
+    {
+      "role": "PO",
+      "description": "Product owner"
     }
   ],
   "resources": {
