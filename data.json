@@ -33,14 +33,16 @@
       "send"
     ],
     "movie": [
-      "rate"
+      "rate",
+      "get"
     ]
   },
   "scopes": [
     "read",
     "order",
     "review",
-    "send"
+    "send",
+    "get"
   ],
   "permissions": {
     "book": {
