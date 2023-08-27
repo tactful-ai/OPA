@@ -1,7 +1,7 @@
 
 # About OPAL: Real-time Policy and Data Aggregation
 
-About OPAL, an open-source project developed by permit io. OPAL was initially designed to be an integral part of the permit.io website. Its primary aim is to facilitate real-time aggregation of Open Policy Agent (OPA) policies and data using real-time websockets. The core architecture of OPAL consists of three main components: the OPAL server, OPAL client, and broadcast channel.
+About OPAL, an open-source project developed by permit io. OPAL was initially designed to be an integral part of the permit.io website. Its primary aim is to facilitate real-time aggregation of Open Policy Agent (OPA) policies and data using real-time WebSockets. The core architecture of OPAL consists of three main components: the OPAL server, OPAL client, and broadcast channel.
 
 ## Key Components
 
@@ -35,7 +35,7 @@ In cases of network disruptions, the OPAL client implements a fail-safe mechanis
 
 ![](https://camo.githubusercontent.com/cd8cec2e446f8e72b14b19f34ee646264aad82372b22f4898a6a36374e6c228e/68747470733a2f2f692e6962622e636f2f43766d583872522f73696d706c69666965642d6469616772616d2d686967686c696768742e706e67)
 
-!![Alt text](image.png)
+!![Alt text](https://github.com/tactful-ai/OPA/blob/editRole/Wiki%20Data/Readme%20file/image.png?raw=true)
 
 
 
