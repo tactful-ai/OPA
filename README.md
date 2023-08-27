@@ -44,7 +44,7 @@ In cases of network disruptions, the OPAL client implements a fail-safe mechanis
 
 # OPAL Manager Setup Guide
 
-This guide provides comprehensive instructions for setting up and running the OPAL RBAC manager along with the accompanying Node.js server. OPAL enables real-time management of RBAC (Role-Based Access Control) policies using an open-source project.
+This guide provides comprehensive instructions for setting up and running the OPAL along with the accompanying Node.js server. OPAL enables real-time management policies.
 
 ## Prerequisites
 
