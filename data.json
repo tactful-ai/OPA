@@ -15,10 +15,6 @@
     {
       "role": "user",
       "description": "user role"
-    },
-    {
-      "role": "co-manger",
-      "description": "manger secound chair"
     }
   ],
   "resources": {
