@@ -27,6 +27,10 @@
     {
       "role": "moderator",
       "description": "monitors posts"
+    },
+    {
+      "role": "maintainer",
+      "description": "updates policies"
     }
   ],
   "resources": {
