@@ -35,6 +35,10 @@
     {
       "role": "bot",
       "description": "monitors posts"
+    },
+    {
+      "role": "developer",
+      "description": "writes code"
     }
   ],
   "resources": {
