@@ -1,53 +1,71 @@
-require("dotenv").config();
-import axios from "axios";
-import { Request, Response } from "express";
-import handleAsync from "../utils/handelAsync";
+// Import required libraries and modules
+require("dotenv").config(); // Load environment variables from .env file
+import axios from "axios"; // HTTP client library
+import { Request, Response } from "express"; // Express request and response types
+import handleAsync from "../utils/handelAsync"; // Custom utility to handle asynchronous functions
 import {
-  OPAPermissionModel,
-  OPAResourceModel,
-  OPARoleModel,
-} from "../DTO/OPAResponse";
-import { PermissionModel, RoleModel, ResourceModel } from "../DTO/retrieveDTO";
+  PermissionModel,
+  RoleModel,
+  ResourceModel,
+  opalData,
+  ScopeModel,
+} from "../DTO/retrieveDTO"; // Custom models for retrieved data
+import opalManager from "../services/OPALManger";
+import { resource, roleWithDescription } from "../DTO/types";
 
+// Endpoint handler to retrieve roles from OPA
 const retrieveRoles = handleAsync(
   async (req: Request, res: Response<RoleModel>) => {
-    const response = await axios.get(process.env.OPA_URL! + "/v1/data/roles");
-    const opaRoleData: OPARoleModel = response.data;
+    const opalData: opalData = await opalManager.retrieveOPALData();
     const roleData = {
-      roles: opaRoleData.result,
+      roles: opalData.roles,
     };
     console.log(roleData);
-
     return res.json(roleData);
   }
 );
 
+const retrieveScopes = handleAsync(
+  async (req: Request, res: Response<ScopeModel>) => {
+    const opalData: opalData = await opalManager.retrieveOPALData();
+    const scopeData = {
+      scopes: opalData.scopes,
+    };
+    console.log(scopeData);
+    return res.json(scopeData);
+  }
+);
+
+// Endpoint handler to retrieve resources from OPA
 const retrieveResources = handleAsync(
   async (req: Request, res: Response<ResourceModel>) => {
-    const response = await axios.get(
-      process.env.OPA_URL + "/v1/data/resources"
-    );
-    const opaResourceDate: OPAResourceModel = response.data;
+    // Fetch resources data from OPA API
+    const opalData: opalData = await opalManager.retrieveOPALData();
     const resourcesData = {
-      resources: opaResourceDate.result,
+      resources: opalData.resources,
     };
     console.log(resourcesData);
-
     return res.json(resourcesData);
   }
 );
 
+// Endpoint handler to retrieve permissions from OPA
 const retrievePermissions = handleAsync(
   async (req: Request, res: Response<PermissionModel>) => {
-    const response = await axios.get(
-      process.env.OPA_URL + "/v1/data/permissions"
-    );
-    const opaPermissionsData: OPAPermissionModel = response.data;
+    // Fetch permissions data from OPA API
+    const opalData: opalData = await opalManager.retrieveOPALData();
     const permissionsData = {
-      permissions: opaPermissionsData.result,
+      permissions: opalData.permissions,
     };
     console.log(permissionsData);
     return res.json(permissionsData);
   }
 );
-export { retrieveRoles, retrieveResources, retrievePermissions };
+
+// Export the endpoint handler functions
+export {
+  retrieveRoles,
+  retrieveResources,
+  retrievePermissions,
+  retrieveScopes,
+};

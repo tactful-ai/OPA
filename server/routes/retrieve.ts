@@ -4,6 +4,7 @@ import {
   retrieveRoles,
   retrieveResources,
   retrievePermissions,
+  retrieveScopes,
 } from "../controllers/retrieve";
 const router = express.Router();
 
@@ -43,6 +44,8 @@ router.get("/roles", retrieveRoles);
  *                 email: ["read", "send"]
  */
 router.get("/resources", retrieveResources);
+router.get("/scopes", retrieveScopes);
+
 
 /**
  * @swagger

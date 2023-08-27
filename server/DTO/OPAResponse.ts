@@ -1,16 +1,18 @@
+import { roleWithDescription, role, resource, scope } from "./types";
+
 // models/RoleModel.ts
 interface OPARoleModel {
-  result: string[];
+  result: roleWithDescription[];
 }
 
 // models/ResourceModel.ts
 interface OPAResourceModel {
-  result: Record<string, string[]>;
+  result: Record<resource, scope[]>;
 }
 
 // models/PermissionModel.ts
 interface OPAPermissionModel {
-  result: Record<string, Record<string, string[]>>;
+  result: Record<resource, Record<scope, role[]>>;
 }
 
 export { OPARoleModel, OPAResourceModel, OPAPermissionModel };

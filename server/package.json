@@ -7,6 +7,7 @@
     "axios": "^1.4.0",
     "chalk": "4",
     "child_process": "^1.0.2",
+    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.9.2",
     "fs": "^0.0.1-security",
@@ -24,6 +25,7 @@
     "format": "npx prettier --write ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./.prettierrc.json"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.13",
     "@types/node": "^18.11.9",
     "@types/swagger-jsdoc": "^6.0.1",
     "@types/swagger-ui-express": "^4.1.3",

@@ -11,7 +11,6 @@ function runOPATest() {
   exec(command, (error, stdout, stderr) => {
     if (error) {
       fs.writeFileSync("opa_test_results.txt", stdout, "utf-8");
-
       console.error("Error:", error.message);
       return;
     }
