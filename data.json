@@ -33,7 +33,9 @@
       "send"
     ],
     "movie": [
-      "watch"
+      "watch",
+      "rate",
+      "get"
     ]
   },
   "scopes": [
