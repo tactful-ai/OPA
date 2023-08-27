@@ -72,10 +72,7 @@
         "user",
         "guest"
       ],
-      "send": [
-        "user",
-        "guest"
-      ]
+      "send": []
     },
     "movie": {
       "rate": [
