@@ -7,11 +7,8 @@ allow := true {
    input.role == "admin" 
 }
 allow := true { 
-   input.role == "A" 
-}
-allow := true { 
   some i
-  input.permission == data.permissions[input.role][i]
+  input.role == data.permissions[input.resource][input.scope][i]
 
 }
 
