@@ -10,7 +10,7 @@
     },
     {
       "role": "outside user",
-      "description": "guest role"
+      "description": "not sighup user"
     },
     {
       "role": "user",
