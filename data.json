@@ -60,6 +60,9 @@
     ],
     "disk-3": [
       "get"
+    ],
+    "disk-4": [
+      "get"
     ]
   },
   "scopes": [
