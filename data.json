@@ -67,6 +67,9 @@
     ],
     "disk-4": [
       "get"
+    ],
+    "disk-5": [
+      "get"
     ]
   },
   "scopes": [
