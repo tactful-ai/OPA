@@ -36,11 +36,7 @@
       "role": "developer",
       "description": "writes code"
     },
-    {},
-    {
-      "role": "",
-      "description": ""
-    }
+    {}
   ],
   "resources": {
     "book": [
