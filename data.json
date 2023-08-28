@@ -68,7 +68,7 @@
     "book": {
       "read": [
         "user",
-        "outside user"
+        null
       ],
       "order": [
         "user"
@@ -80,7 +80,7 @@
     "document": {
       "read": [
         "user",
-        "outside user"
+        null
       ],
       "order": [
         "user"
@@ -92,7 +92,7 @@
     "email": {
       "read": [
         "user",
-        "outside user"
+        null
       ],
       "send": [
         "user"
