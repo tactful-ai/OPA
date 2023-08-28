@@ -74,9 +74,6 @@
     ],
     "disk": [
       "get"
-    ],
-    "just disk": [
-      "get"
     ]
   },
   "scopes": [
