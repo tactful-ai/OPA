@@ -70,8 +70,7 @@
   "permissions": {
     "book": {
       "read": [
-        "user",
-        null
+        "user"
       ],
       "order": [
         "user"
@@ -82,8 +81,8 @@
     },
     "document": {
       "read": [
-        "user",
-        null
+        "user"
+      
       ],
       "order": [
         "user"
@@ -94,8 +93,7 @@
     },
     "email": {
       "read": [
-        "user",
-        null
+        "user"
       ],
       "send": [
         "user"
