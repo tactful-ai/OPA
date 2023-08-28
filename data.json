@@ -31,6 +31,10 @@
     {
       "role": "developer",
       "description": "writes code"
+    },
+    {
+      "role": "Maintainer",
+      "description": "Maintains posts"
     }
   ],
   "resources": {
