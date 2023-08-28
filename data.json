@@ -1,45 +1,15 @@
 {
   "roles": [
-    {
-      "role": "admin",
-      "description": "admin role"
-    },
-    {
-      "role": "writer",
-      "description": " writer role"
-    },
-    {
-      "role": "guest",
-      "description": "guest role"
-    },
-    {
-      "role": "user",
-      "description": "user role"
-    },
-    {
-      "role": "PO",
-      "description": "Product owner"
-    },
-    {
-      "role": "content writer",
-      "description": "writes content"
-    },
-    {
-      "role": "moderator",
-      "description": "monitors posts"
-    },
-    {
-      "role": "maintainer",
-      "description": "updates policies"
-    },
-    {
-      "role": "bot",
-      "description": "monitors posts"
-    },
-    {
-      "role": "developer",
-      "description": "writes code"
-    }
+    "admin",
+    "writer",
+    "outside user",
+    "user",
+    "PO",
+    "content writer",
+    "moderator",
+    "maintainer",
+    "bot",
+    "developer"
   ],
   "resources": {
     "book": [
@@ -72,7 +42,7 @@
     "book": {
       "read": [
         "user",
-        "guest"
+        "outside user"
       ],
       "order": [
         "user"
@@ -84,7 +54,7 @@
     "document": {
       "read": [
         "user",
-        "guest"
+        "outside user"
       ],
       "order": [
         "user"
@@ -96,7 +66,7 @@
     "email": {
       "read": [
         "user",
-        "guest"
+        "outside user"
       ],
       "send": [
         "user"
