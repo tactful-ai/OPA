@@ -33,10 +33,6 @@
       "description": "updates policies"
     },
     {
-      "role": "bot",
-      "description": "monitors posts"
-    },
-    {
       "role": "developer",
       "description": "writes code"
     }
