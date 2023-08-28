@@ -19,6 +19,8 @@ About OPAL, an open-source project developed by permit io. OPAL was initially de
 
 - **CLI Tools:** Both the OPAL server and OPAL client come with command-line interface (CLI) tools, simplifying various management, configuration, and monitoring tasks.
 
+- **Git Repository Sync:** OPAL's integration with Git repositories enhances version control for policies, streamlining collaboration and providing a history of policy modifications.
+
 ## Workflow and Change Management
 
 OPAL provides versatile methods to accommodate changes and updates:
@@ -140,7 +142,7 @@ Managing permissions in OPAL is a straightforward process that empowers you to f
 
    To enable read and write access to the DB resource, follow these steps:
 
-   - Send a POST request to `{{url}}/roles`.
+   - Send a POST request to `/roles`.
    - Include the following JSON data to create a DB-administrator role:
 
      ```json
@@ -154,7 +156,7 @@ Managing permissions in OPAL is a straightforward process that empowers you to f
 
    After creating the DB-administrator role, proceed to create the DB resource:
 
-   - Send a POST request to `{{url}}/resources`.
+   - Send a POST request to `/resources`.
    - Include the following JSON data to create the DB resource with read and write scopes:
 
      ```json
@@ -170,7 +172,7 @@ Managing permissions in OPAL is a straightforward process that empowers you to f
 
    - To allow the DB-administrator role to read the DB resource:
    
-     - Send a POST request to `{{url}}/permissions`.
+     - Send a POST request to `/permissions`.
      - Include the following JSON data to create a permission for reading:
 
        ```json
@@ -183,7 +185,7 @@ Managing permissions in OPAL is a straightforward process that empowers you to f
 
    - To allow the DB-administrator role to write to the DB resource:
    
-     - Send another POST request to `{{url}}/permissions`.
+     - Send another POST request to `/permissions`.
      - Include the following JSON data to create a permission for writing:
 
        ```json
@@ -195,10 +197,3 @@ Managing permissions in OPAL is a straightforward process that empowers you to f
        ```
 
 5. **Congratulations!** You've now configured the permissions. The DB-administrator role can effectively manage and access the DB resource based on the specified permissions.
-
-
-
-
-
-
-
