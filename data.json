@@ -29,10 +29,6 @@
       "description": "monitors posts"
     },
     {
-      "role": "maintainer",
-      "description": "updates policies"
-    },
-    {
       "role": "developer",
       "description": "writes code"
     }
