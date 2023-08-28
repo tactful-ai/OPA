@@ -5,10 +5,6 @@
       "description": "admin role"
     },
     {
-      "role": "writer",
-      "description": " writer role"
-    },
-    {
       "role": "outside user",
       "description": "not sighup user"
     },
@@ -74,8 +70,7 @@
   "permissions": {
     "book": {
       "read": [
-        "user",
-        "writer"
+        "user"
       ],
       "order": [
         "user"
