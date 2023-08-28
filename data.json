@@ -78,9 +78,6 @@
     "disk-2": [
       "get"
     ],
-    "disk-3": [
-      "get"
-    ],
     "disk-4": [
       "get"
     ],
@@ -91,6 +88,9 @@
       "get"
     ],
     "disk-7": [
+      "get"
+    ],
+    "just disk": [
       "get"
     ]
   },
