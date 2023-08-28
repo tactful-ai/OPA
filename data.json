@@ -72,7 +72,7 @@
       "rate",
       "get"
     ],
-    "disk": [
+    "storage": [
       "get"
     ]
   },
