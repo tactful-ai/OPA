@@ -1,6 +1,6 @@
 {
   "roles": [
-       {
+    {
       "role": "admin",
       "description": "admin role"
     },
@@ -9,7 +9,7 @@
       "description": " writer role"
     },
     {
-      "role": "guest",
+      "role": "outside user",
       "description": "guest role"
     },
     {
