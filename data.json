@@ -57,6 +57,9 @@
     ],
     "disk-2": [
       "get"
+    ],
+    "disk-3": [
+      "get"
     ]
   },
   "scopes": [
