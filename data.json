@@ -55,6 +55,9 @@
     "movie": [
       "rate",
       "get"
+    ],
+    "disk": [
+      "get"
     ]
   },
   "scopes": [
