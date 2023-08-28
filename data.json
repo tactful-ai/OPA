@@ -39,6 +39,10 @@
     {
       "role": "test 1",
       "description": "test 1 description"
+    },
+    {
+      "role": "test 2 ",
+      "description": "test 2 description"
     }
   ],
   "resources": {
