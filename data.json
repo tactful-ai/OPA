@@ -62,6 +62,10 @@
     "resource name": [
       "scope1",
       "scope2"
+    ],
+    "resource2": [
+      "scope1",
+      "scope2"
     ]
   },
   "scopes": [
