@@ -31,6 +31,10 @@
     {
       "role": "Maintainer",
       "description": "Maintains posts"
+    },
+    {
+      "role": "new role",
+      "description": "new desc"
     }
   ],
   "resources": {
