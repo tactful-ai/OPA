@@ -31,10 +31,6 @@
     {
       "role": "Maintainer",
       "description": "Maintains posts"
-    },
-    {
-      "role": "role to delete",
-      "description": "desc to delete"
     }
   ],
   "resources": {
