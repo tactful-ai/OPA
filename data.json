@@ -62,8 +62,7 @@
     "resource2": [
       "scope1",
       "scope2"
-    ],
-    "new resource ": []
+    ]
   },
   "scopes": [
     "read",
