@@ -62,12 +62,6 @@
     "resource2": [
       "scope1",
       "scope2"
-    ],
-    "New Resource to delete": [
-      "scope1",
-      "scope2",
-      "scope3",
-      "scope4"
     ]
   },
   "scopes": [
