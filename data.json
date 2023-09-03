@@ -62,9 +62,6 @@
     "resource2": [
       "scope1",
       "scope2"
-    ],
-    "Resource changed": [
-      "scope1"
     ]
   },
   "scopes": [
