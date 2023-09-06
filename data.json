@@ -77,7 +77,9 @@
   ],
   "permissions": {
     "book": {
-      "read": [],
+      "read": [
+        "user"
+      ],
       "order": [
         "user"
       ],
