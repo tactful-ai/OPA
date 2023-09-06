@@ -83,9 +83,7 @@
       "order": [
         "user"
       ],
-      "review": [
-        "user"
-      ]
+      "review": []
     },
     "document": {
       "read": [
