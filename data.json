@@ -94,9 +94,7 @@
       "read": [
         "user"
       ],
-      "send": [
-        "user"
-      ]
+      "send": []
     },
     "movie": {
       "rate": [
