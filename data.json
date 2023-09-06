@@ -84,9 +84,7 @@
       "review": []
     },
     "document": {
-      "read": [
-        "user"
-      ],
+      "read": [],
       "order": [
         "user"
       ],
