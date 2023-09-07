@@ -35,7 +35,7 @@ services:
       - OPAL_DATA_CONFIG_SOURCES={"config":{"entries":[{"url":"http://opal_server:7002/policy-data","topics":["policy_data"],"dst_path":"/static"}]}}
       - OPAL_LOG_FORMAT_INCLUDE_PID=true
 
-       - OPAL_POLICY_REPO_WEBHOOK_SECRET=RuAgc5MODuQ3wemikjuAsf1T4trtyxSs
+       - OPAL_POLICY_REPO_WEBHOOK_SECRET=xxxxxxxxxxxxxxxxxxxxxxx
       #- OPAL_POLICY_REPO_WEBHOOK_PARAMS={"secret_header_name":"x-webhook-token","secret_type":"token","secret_parsing_regex":"(.*)","event_request_key":"gitEvent","push_event_value":"git.push"}
     ports:
       # exposes opal server on the host machine, you can access the server at: http://localhost:7002
