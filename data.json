@@ -39,6 +39,10 @@
     {
       "role": "user3",
       "description": "description for the role "
+    },
+    {
+      "role": "test",
+      "description": "test description"
     }
   ],
   "resources": {
