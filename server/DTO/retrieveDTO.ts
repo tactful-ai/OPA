@@ -12,7 +12,6 @@ interface ResourceModel {
   resources: Record<resource, scope[]>;
 }
 
-
 type ResourcePermissions = Record<scope, role[]>;
 
 // models/PermissionModel.ts

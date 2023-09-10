@@ -21,7 +21,6 @@ const addResource = handleMutexAsync(async (req: Request, res: Response) => {
 
   const resource: resource = req.body.resource; // resource to be added
   const scopes: scope[] = req.body.scopes || []; // scopes of the resource
-
   // Check if the resource already exists
   if (data.resources[resource]) {
     return res.status(400).json({ message: "resource already exists" });

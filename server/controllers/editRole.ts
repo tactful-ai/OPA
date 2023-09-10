@@ -43,7 +43,6 @@ const addRole = handleMutexAsync(async (req: Request, res: Response) => {
   return res.json({ message: "Role added successfully" });
 });
 
-
 // Endpoint handler to remove a role
 const removeRole = handleMutexAsync(async (req: Request, res: Response) => {
   // Pull the latest changes from Git repository
@@ -138,10 +137,6 @@ const renameRole = handleMutexAsync(async (req: Request, res: Response) => {
   await waitUntilOpalUnlocked();
   return res.json({ message: "Role renamed successfully" });
 });
-
-
-
-
 
 const checkIfRoleExists = (resource: roleWithDescription[], role: role) => {
   for (let i = 0; i < resource.length; i++) {

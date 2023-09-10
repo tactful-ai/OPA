@@ -36,7 +36,4 @@ router.delete("/permissions", removePermission);
 //callback
 router.post("/opalCallback", opalCallback);
 
-
-
-
 export default router;
