@@ -6,9 +6,14 @@ import gitManager from "../services/gitManger"; // Custom module for Git managem
 import fileManger from "../services/fileManger"; // Custom module for file management
 import { OPARoleModel } from "../DTO/OPAResponse";
 import { description, role, roleWithDescription } from "../DTO/types";
+import { lockOpalCallback, waitUntilOpalUnlocked } from "../services/lock";
+import { run } from "node:test";
+import runOPATest from "../services/runTest";
+import runOPATestWrapper from "../services/runTest";
+import handleMutexAsync from "../utils/handelMutexAsync";
 
 // Endpoint handler to add a new role
-const addRole = handleAsync(async (req: Request, res: Response) => {
+const addRole = handleMutexAsync(async (req: Request, res: Response) => {
   // Pull the latest changes from Git repository
   await gitManager.pull();
   // Read data from a file (presumably containing roles and permissions)
@@ -23,18 +28,24 @@ const addRole = handleAsync(async (req: Request, res: Response) => {
   if (checkIfRoleExists(data.roles, role)) {
     return res.status(400).json({ message: "Role already exists" });
   }
-
   // Add the new role to the roles array
   data.roles.push(roleData);
   // Write updated data back to the file
   await fileManger.write(data);
+
+  if (!runOPATestWrapper()) {
+    return res.status(400).json({ message: "test failed" });
+  }
   // Push changes to Git repository with a commit message
+  lockOpalCallback();
   await gitManager.push("add " + role + " role");
+  await waitUntilOpalUnlocked();
   return res.json({ message: "Role added successfully" });
 });
 
+
 // Endpoint handler to remove a role
-const removeRole = handleAsync(async (req: Request, res: Response) => {
+const removeRole = handleMutexAsync(async (req: Request, res: Response) => {
   // Pull the latest changes from Git repository
   await gitManager.pull();
   // Read data from a file
@@ -63,20 +74,29 @@ const removeRole = handleAsync(async (req: Request, res: Response) => {
 
   // Write updated data back to the file
   await fileManger.write(data);
+
+  //run test
+  if (!runOPATestWrapper()) {
+    return res.status(400).json({ message: "test failed" });
+  }
+
+  lockOpalCallback();
   // Push changes to Git repository with a commit message
   await gitManager.push("remove " + removedRole + " role");
+  //wait for opal to change data in OPA
+  await waitUntilOpalUnlocked();
   return res.json({ message: "Role removed successfully" });
 });
 
 // Endpoint handler to rename a role
-const renameRole = handleAsync(async (req: Request, res: Response) => {
+const renameRole = handleMutexAsync(async (req: Request, res: Response) => {
   // Pull the latest changes from Git repository
   await gitManager.pull();
   // Read data from a file
   const data = await fileManger.read();
   const oldRole: role = req.body.role; // Old role name
   const newRole: role = req.body.newRole; // New role name
-
+  const newRoleDescription: description = req.body.newRoleDescription;
   // Check if the old role exists
   if (!checkIfRoleExists(data.roles, oldRole)) {
     return res.status(400).json({ message: "Role does not exist" });
@@ -88,7 +108,12 @@ const renameRole = handleAsync(async (req: Request, res: Response) => {
 
   // Rename the role in the roles array
   data.roles = data.roles.map((roleWithDescription: roleWithDescription) =>
-    roleWithDescription.role === oldRole ? newRole : roleWithDescription.role
+    roleWithDescription.role === oldRole
+      ? {
+          role: newRole || oldRole,
+          description: newRoleDescription || roleWithDescription.description,
+        }
+      : roleWithDescription
   );
 
   // Rename the role in permissions for various resources
@@ -102,10 +127,21 @@ const renameRole = handleAsync(async (req: Request, res: Response) => {
 
   // Write updated data back to the file
   await fileManger.write(data);
+
+  //run tests
+  if (!runOPATestWrapper()) {
+    return res.status(400).json({ message: "test failed" });
+  }
+  lockOpalCallback();
   // Push changes to Git repository with a commit message
   await gitManager.push("role " + oldRole + " renamed to " + newRole + " role");
+  await waitUntilOpalUnlocked();
   return res.json({ message: "Role renamed successfully" });
 });
+
+
+
+
 
 const checkIfRoleExists = (resource: roleWithDescription[], role: role) => {
   for (let i = 0; i < resource.length; i++) {

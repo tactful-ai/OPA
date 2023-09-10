@@ -12,9 +12,12 @@ interface ResourceModel {
   resources: Record<resource, scope[]>;
 }
 
+
+type ResourcePermissions = Record<scope, role[]>;
+
 // models/PermissionModel.ts
 interface PermissionModel {
-  permissions: Record<resource, Record<scope, role[]>>;
+  permissions: Record<resource, ResourcePermissions>;
 }
 interface opalData {
   roles: roleWithDescription[];
@@ -22,4 +25,11 @@ interface opalData {
   scopes: scope[];
   permissions: Record<resource, Record<scope, role[]>>;
 }
-export { RoleModel, ResourceModel, PermissionModel, opalData, ScopeModel };
+export {
+  RoleModel,
+  ResourceModel,
+  PermissionModel,
+  opalData,
+  ScopeModel,
+  ResourcePermissions,
+};

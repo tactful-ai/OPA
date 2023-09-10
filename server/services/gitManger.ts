@@ -3,7 +3,6 @@ import fs from "fs";
 import path from "path";
 import { simpleGit } from "simple-git";
 import { promisify } from "util";
-import handleAsync from "../utils/handelAsync";
 
 require("dotenv").config();
 
@@ -14,7 +13,7 @@ const accessAsync = promisify(fs.access);
 class GitManager {
   git: any;
   policyDir: string = "";
-  init = handleAsync(() => {
+  init = () => {
     this.policyDir = path.join(__dirname, "/../gitserver");
     this.isDirExist().then(async (isExist) => {
       if (!isExist) {
@@ -22,14 +21,15 @@ class GitManager {
         this.git = simpleGit(this.policyDir);
 
         await this.cleanRepo(this.policyDir);
-        await this.cloneRepository(process.env.GIT_REPO, this.policyDir);
+        await this.cloneRepository(process.env.GIT_REPO!, this.policyDir);
         await this.addOrigin();
+        this.git.addConfig("user.email", process.env.GIT_EMAIL!);
       } else {
         this.git = simpleGit(this.policyDir);
         await this.pull();
       }
     });
-  });
+  };
 
   isDirExist = async (): Promise<boolean> => {
     try {
@@ -40,11 +40,11 @@ class GitManager {
     }
   };
 
-  createDir = handleAsync(async (path: string): Promise<void> => {
+  createDir = async (path: string): Promise<void> => {
     await mkdirAsync(path);
-  });
+  };
 
-  cleanRepo = handleAsync(async (folderPath: string) => {
+  cleanRepo = async (folderPath: string) => {
     this.git
       .cwd(folderPath)
       .silent(true)
@@ -61,31 +61,40 @@ class GitManager {
           }
         );
       });
-  });
+  };
 
-  cloneRepository = handleAsync(async (url: string, targetPath: string) => {
-    await this.git.clone(url, targetPath, ["-b", "master"]);
+  cloneRepository = async (url: string, targetPath: string) => {
+    await this.git.clone(url, targetPath, ["-b", process.env.MAIN_BRANCH!]);
     console.log(`Cloned repository `);
-  });
+  };
 
-  addOrigin = handleAsync(async () => {
-    await this.git.addRemote("org", process.env.GIT_REPO!);
-    console.log(`Added remote org `);
-  });
+  addOrigin = async () => {
+    await this.git.addRemote(process.env.REMOTE_NAME, process.env.GIT_REPO!);
+    console.log(`Added remote ${process.env.REMOTE_NAME} `);
+  };
 
-  pull = handleAsync(async () => {
-    await this.git.pull("org", `master`);
-    console.log(" Pull from GitHub successfully!");
-  });
+  pull = async () => {
+    await this.git.pull(process.env.REMOTE_NAME, process.env.MAIN_BRANCH!);
+    console.log(" Pull from Git successfully!");
+  };
+  reset = async () => {
+    this.git.reset(["--hard"], (error: any) => {
+      if (error) {
+        console.error("Error discarding changes:", error);
+        return;
+      }
+      console.log("Uncommitted changes have been discarded.");
+    });
+  };
 
-  push = handleAsync(async (commitMessage: string) => {
+  push = async (commitMessage: string) => {
     await this.git.add(".");
     // Commit the changes
     await this.git.commit(commitMessage);
     // Push the changes to the remote repository (origin) and the current branch
-    await this.git.push("org", `master`); // Change 'main' to your branch name if different
-    console.log("Changes pushed to GitHub successfully!");
-  });
+    await this.git.push(process.env.REMOTE_NAME, process.env.MAIN_BRANCH); // Change 'main' to your branch name if different
+    console.log("Changes pushed to GIT repo successfully!");
+  };
 }
 
 const gitManager = new GitManager();

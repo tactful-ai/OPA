@@ -20,7 +20,6 @@ const retrieveRoles = handleAsync(
     const roleData = {
       roles: opalData.roles,
     };
-    console.log(roleData);
     return res.json(roleData);
   }
 );
@@ -31,7 +30,6 @@ const retrieveScopes = handleAsync(
     const scopeData = {
       scopes: opalData.scopes,
     };
-    console.log(scopeData);
     return res.json(scopeData);
   }
 );
@@ -44,7 +42,6 @@ const retrieveResources = handleAsync(
     const resourcesData = {
       resources: opalData.resources,
     };
-    console.log(resourcesData);
     return res.json(resourcesData);
   }
 );
@@ -57,7 +54,6 @@ const retrievePermissions = handleAsync(
     const permissionsData = {
       permissions: opalData.permissions,
     };
-    console.log(permissionsData);
     return res.json(permissionsData);
   }
 );

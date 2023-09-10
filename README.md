@@ -1,3 +1,31 @@
+# Open Policy Agent (OPA)
+
+**Open Policy Agent (OPA)** is an open-source policy engine designed for policy-based control and decision-making in modern, cloud-native applications. It provides a unified, declarative language for expressing policies across different layers of your software stack.
+
+## Key Features
+
+- **Declarative Policies**: OPA allows you to express policies using a high-level, human-readable language called Rego (Policy Language) rather than writing complex code.
+
+- **Fine-Grained Control**: OPA enables fine-grained control over authorization and access control, making it suitable for microservices and containerized environments.
+
+- **Policy as Code**: You can version, test, and manage policies as code, making it easier to maintain and enforce complex security and compliance requirements.
+
+- **Integration Flexibility**: OPA can be integrated with various cloud-native tools, services, and APIs, making it versatile for enforcing policies in different environments.
+
+## Use Cases
+
+1. **Access Control**: OPA helps define and enforce access control policies, ensuring that only authorized users or services can access specific resources.
+
+2. **Authorization**: It allows you to determine whether a given request or action is authorized based on defined policies.
+
+3. **Data Filtering**: OPA can filter and transform data in real-time, enabling data-driven policy decisions.
+
+4. **Compliance and Security**: OPA can enforce security and compliance policies, ensuring that your applications adhere to organizational standards and best practices.
+
+## How OPA Works
+
+OPA evaluates policies against incoming requests or data. It can be integrated into your application's code or deployed as a standalone service. When a request or data is sent to OPA, it uses the defined policies to make access control and authorization decisions.
+
 
 # About OPAL: Real-time Policy and Data Aggregation
 
@@ -19,6 +47,8 @@ About OPAL, an open-source project developed by permit io. OPAL was initially de
 
 - **CLI Tools:** Both the OPAL server and OPAL client come with command-line interface (CLI) tools, simplifying various management, configuration, and monitoring tasks.
 
+- **Git Repository Sync:** OPAL's integration with Git repositories enhances version control for policies, streamlining collaboration and providing a history of policy modifications.
+
 ## Workflow and Change Management
 
 OPAL provides versatile methods to accommodate changes and updates:
@@ -35,7 +65,7 @@ In cases of network disruptions, the OPAL client implements a fail-safe mechanis
 
 ![](https://camo.githubusercontent.com/cd8cec2e446f8e72b14b19f34ee646264aad82372b22f4898a6a36374e6c228e/68747470733a2f2f692e6962622e636f2f43766d583872522f73696d706c69666965642d6469616772616d2d686967686c696768742e706e67)
 
-!![Alt text](https://github.com/tactful-ai/OPA/blob/editRole/Wiki%20Data/Readme%20file/image.png?raw=true)
+![Alt text](https://github.com/tactful-ai/OPA/blob/dev/Wiki%20Data/Readme%20file/arch.png?raw=true)
 
 
 
@@ -62,11 +92,24 @@ To get started, ensure you have the following prerequisites installed on your sy
    cd server
    nano docker-compose.yaml
    ```
-   - Set the following environment variables:
+   - Set the following environment variables inside OPAL server:
    ```yaml
    environment:
-     OPAL_POLICY_REPO_URL: <your_rego_code_repo_url>
-     OPAL_POLICY_REPO_WEBHOOK_SECRET: <your_webhook_secret>
+     - OPAL_POLICY_REPO_URL: <your_rego_code_repo_url>
+     - OPAL_POLICY_REPO_WEBHOOK_SECRET: <your_webhook_secret>
+     - OPAL_POLICY_REPO_MAIN_BRANCH: branch that opal will track
+     - OPAL_POLICY_REPO_WEBHOOK_PARAMS: webhook parameter
+
+   ```
+[webhook parameter](https://docs.opal.ac/tutorials/track_a_git_repo#example-configuration-values-for-common-services)
+   - Set the following environment variables inside OPAL client:
+   ```yaml
+   environment:
+     - OPAL_POLICY_STORE_URL: OPA url
+     - OPAL_POLICY_STORE_AUTH_TYPE: TOKEN or OAuth
+     - OPAL_POLICY_STORE_AUTH_TOKEN: token to connect to OPA if Authorization layer added to opa
+     - OPAL_DEFAULT_UPDATE_CALLBACKS: {"callbacks":["middleware_server_URL"]}
+     - OPAL_SHOULD_REPORT_ON_DATA_UPDATES: True
    ```
  **NodeJs server**:
  
@@ -74,6 +117,11 @@ To get started, ensure you have the following prerequisites installed on your sy
    ```dotenv
    GIT_REPO=<your_rego_code_repo_url_with_token>
    OPAL_URL=http://opalHostName:7002
+   RUN_TESTS=#true or false if you want it to run test before push
+   REMOTE_NAME=#the name of the git remote 
+   MAIN_BRANCH=#branch that contain the policies
+   GIT_EMAIL=#Provide the email address associated with your Git commits. This is used for authorship and identification purposes in Git history.
+   DATA_PATH= #path of data file (should be in root)
    PORT: <port_to_run_the_server_default_3000>
    ```
 
@@ -140,7 +188,7 @@ Managing permissions in OPAL is a straightforward process that empowers you to f
 
    To enable read and write access to the DB resource, follow these steps:
 
-   - Send a POST request to `{{url}}/roles`.
+   - Send a POST request to `/roles`.
    - Include the following JSON data to create a DB-administrator role:
 
      ```json
@@ -154,7 +202,7 @@ Managing permissions in OPAL is a straightforward process that empowers you to f
 
    After creating the DB-administrator role, proceed to create the DB resource:
 
-   - Send a POST request to `{{url}}/resources`.
+   - Send a POST request to `/resources`.
    - Include the following JSON data to create the DB resource with read and write scopes:
 
      ```json
@@ -170,7 +218,7 @@ Managing permissions in OPAL is a straightforward process that empowers you to f
 
    - To allow the DB-administrator role to read the DB resource:
    
-     - Send a POST request to `{{url}}/permissions`.
+     - Send a POST request to `/permissions`.
      - Include the following JSON data to create a permission for reading:
 
        ```json
@@ -183,7 +231,7 @@ Managing permissions in OPAL is a straightforward process that empowers you to f
 
    - To allow the DB-administrator role to write to the DB resource:
    
-     - Send another POST request to `{{url}}/permissions`.
+     - Send another POST request to `/permissions`.
      - Include the following JSON data to create a permission for writing:
 
        ```json

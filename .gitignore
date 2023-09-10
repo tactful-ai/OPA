@@ -1,5 +1,8 @@
 server/gitserver
+server/opa-server
 server/node_modules
 server/package-lock.json
-server/dev.env
+server/**.env
 .vscode
+server/services/docker-compose.yml
+server/opa.exe

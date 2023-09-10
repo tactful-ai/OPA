@@ -7,18 +7,18 @@ const readfile = promisify(fs.readFile);
 const writefile = promisify(fs.writeFile);
 
 class FileManager {
-  path = path.join(__dirname, "/../gitserver/data.json");
-  read = handleAsync(async () => {
+  path = path.join(__dirname, "/../gitserver" + process.env.DATA_PATH);
+  read = async () => {
     const data = await readfile(this.path, "utf8");
     const jsonData = JSON.parse(data);
     console.log("file read");
     return jsonData;
-  });
+  };
 
-  write = handleAsync(async (data: any) => {
+  write = async (data: any) => {
     writefile(this.path, JSON.stringify(data, null, 2), "utf8");
     console.log("file updated");
-  });
+  };
 }
 
 const fileManger = new FileManager();
