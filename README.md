@@ -65,7 +65,7 @@ In cases of network disruptions, the OPAL client implements a fail-safe mechanis
 
 ![](https://camo.githubusercontent.com/cd8cec2e446f8e72b14b19f34ee646264aad82372b22f4898a6a36374e6c228e/68747470733a2f2f692e6962622e636f2f43766d583872522f73696d706c69666965642d6469616772616d2d686967686c696768742e706e67)
 
-![Alt text](https://github.com/tactful-ai/OPA/blob/dev/Wiki%20Data/Readme%20file/arch.png?raw=true)
+![Alt text](https://github.com/tactful-ai/OPA/blob/dev/Wiki%20Data/Readme%20file/OPAL.png?raw=true)
 
 
 
