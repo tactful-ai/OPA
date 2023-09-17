@@ -27,10 +27,6 @@
     {
       "role": "developer",
       "description": "writes code"
-    },
-    {
-      "role": "Maintainer",
-      "description": "description for the role "
     }
   ],
   "resources": {
