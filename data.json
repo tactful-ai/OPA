@@ -45,10 +45,6 @@
       "description": "test description"
     },
     {
-      "role": "role",
-      "description": "description for the role "
-    },
-    {
       "role": "role2",
       "description": "description for the role "
     }
