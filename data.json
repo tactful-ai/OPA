@@ -35,6 +35,9 @@
     {
       "role": "test2",
       "description": "description for the role "
+    },
+    {
+      "role": "kak"
     }
   ],
   "resources": {
