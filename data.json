@@ -35,9 +35,6 @@
     {
       "role": "test2",
       "description": "description for the role "
-    },
-    {
-      "role": "testtesttest"
     }
   ],
   "resources": {
