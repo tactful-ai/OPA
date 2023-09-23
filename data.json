@@ -96,9 +96,7 @@
       ]
     },
     "email": {
-      "read": [
-        "user"
-      ],
+      "read": [],
       "send": []
     },
     "movie": {
