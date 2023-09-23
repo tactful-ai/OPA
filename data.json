@@ -35,6 +35,10 @@
     {
       "role": "test",
       "description": ""
+    },
+    {
+      "role": "Maintainer2",
+      "description": "description for the role "
     }
   ],
   "resources": {
