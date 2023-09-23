@@ -27,6 +27,10 @@
     {
       "role": "Maintainer",
       "description": "description for the role "
+    },
+    {
+      "role": "admin",
+      "description": "description for the role "
     }
   ],
   "resources": {
