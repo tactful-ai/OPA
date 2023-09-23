@@ -31,6 +31,14 @@
     {
       "role": "admin",
       "description": "description for the role "
+    },
+    {
+      "role": "test2",
+      "description": "description for the role "
+    },
+    {
+      "role": "test3",
+      "description": "description for the role "
     }
   ],
   "resources": {
@@ -96,7 +104,9 @@
       ]
     },
     "email": {
-      "read": [],
+      "read": [
+        "user"
+      ],
       "send": []
     },
     "movie": {
