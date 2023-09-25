@@ -74,6 +74,10 @@
     "database": [
       "read",
       "write"
+    ],
+    "database2": [
+      "read",
+      "write"
     ]
   },
   "scopes": [
