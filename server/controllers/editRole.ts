@@ -1,7 +1,6 @@
 // Import required libraries and modules
 require("dotenv").config(); // Load environment variables from .env file
 import { Request, Response } from "express"; // Express request and response types
-import handleAsync from "../utils/handelAsync"; // Custom utility to handle asynchronous functions
 import gitManager from "../services/gitManger"; // Custom module for Git management
 import fileManger from "../services/fileManger"; // Custom module for file management
 import { OPARoleModel } from "../DTO/OPAResponse";
@@ -10,14 +9,14 @@ import { lockOpalCallback, waitUntilOpalUnlocked } from "../services/lock";
 import { run } from "node:test";
 import runOPATest from "../services/runTest";
 import runOPATestWrapper from "../services/runTest";
-import handleMutexAsync from "../utils/handelMutexAsync";
+import handleMutexAsync from "../utils/handleMutexAsync";
 
 // Endpoint handler to add a new role
 const addRole = handleMutexAsync(async (req: Request, res: Response) => {
   // Pull the latest changes from Git repository
   await gitManager.pull();
   // Read data from a file (presumably containing roles and permissions)
-  const data = await fileManger.read();
+  const data = await fileManger.readData();
   const role: role = req.body.role; // Role to be added
   const description: description = req.body.description; // Description of the role
   const roleData: roleWithDescription = {
@@ -31,9 +30,9 @@ const addRole = handleMutexAsync(async (req: Request, res: Response) => {
   // Add the new role to the roles array
   data.roles.push(roleData);
   // Write updated data back to the file
-  await fileManger.write(data);
+  await fileManger.writeData(data);
 
-  if (!runOPATestWrapper()) {
+  if (!await runOPATestWrapper()) {
     return res.status(400).json({ message: "test failed" });
   }
   // Push changes to Git repository with a commit message
@@ -43,12 +42,19 @@ const addRole = handleMutexAsync(async (req: Request, res: Response) => {
   return res.json({ message: "Role added successfully" });
 });
 
+
+
+
+
+
+
+
 // Endpoint handler to remove a role
 const removeRole = handleMutexAsync(async (req: Request, res: Response) => {
   // Pull the latest changes from Git repository
   await gitManager.pull();
   // Read data from a file
-  const data = await fileManger.read();
+  const data = await fileManger.readData();
   const removedRole: role = req.body.role; // Role to be removed
 
   // Check if the role exists
@@ -72,10 +78,10 @@ const removeRole = handleMutexAsync(async (req: Request, res: Response) => {
   }
 
   // Write updated data back to the file
-  await fileManger.write(data);
+  await fileManger.writeData(data);
 
   //run test
-  if (!runOPATestWrapper()) {
+  if (!(await runOPATestWrapper())) {
     return res.status(400).json({ message: "test failed" });
   }
 
@@ -87,15 +93,25 @@ const removeRole = handleMutexAsync(async (req: Request, res: Response) => {
   return res.json({ message: "Role removed successfully" });
 });
 
+
+
+
+
+
+
+
+
 // Endpoint handler to rename a role
 const renameRole = handleMutexAsync(async (req: Request, res: Response) => {
   // Pull the latest changes from Git repository
   await gitManager.pull();
   // Read data from a file
-  const data = await fileManger.read();
+  const data = await fileManger.readData();
   const oldRole: role = req.body.role; // Old role name
   const newRole: role = req.body.newRole; // New role name
   const newRoleDescription: description = req.body.newRoleDescription;
+
+
   // Check if the old role exists
   if (!checkIfRoleExists(data.roles, oldRole)) {
     return res.status(400).json({ message: "Role does not exist" });
@@ -125,12 +141,13 @@ const renameRole = handleMutexAsync(async (req: Request, res: Response) => {
   }
 
   // Write updated data back to the file
-  await fileManger.write(data);
+  await fileManger.writeData(data);
 
   //run tests
-  if (!runOPATestWrapper()) {
+  if (!(await runOPATestWrapper())) {
     return res.status(400).json({ message: "test failed" });
   }
+  // lock opal
   lockOpalCallback();
   // Push changes to Git repository with a commit message
   await gitManager.push("role " + oldRole + " renamed to " + newRole + " role");
@@ -138,6 +155,15 @@ const renameRole = handleMutexAsync(async (req: Request, res: Response) => {
   return res.json({ message: "Role renamed successfully" });
 });
 
+
+
+
+
+
+
+
+
+// Helper function to check if a role exists
 const checkIfRoleExists = (resource: roleWithDescription[], role: role) => {
   for (let i = 0; i < resource.length; i++) {
     if (role == resource[i].role) return true;

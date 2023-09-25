@@ -5,16 +5,38 @@ import fs from "fs";
 import path from "path";
 import { promisify } from "util";
 import gitManager from "./gitManger";
+import fileManger from "./fileManger";
 
 const execAsync = promisify(exec);
 
-const policyDir = path.join(__dirname, "../gitserver ");
-async function runOPATest(): Promise<boolean> {
-  const command = `opa.exe test ${policyDir} `;
+const policyDir =
+  process.env.RUN_WITH_DOCKER == "true"
+    ? `./build/${fileManger.folderName}`
+    : `./${fileManger.folderName}`; //fileManger.OPACodePath;
 
-  const result = await exec(command);
-  console.log("OPA test completed successfully");
-  return true;
+async function runOPATest(): Promise<boolean> {
+  const command = `${process.env.OPA_COMMAND} test ${policyDir} `;
+
+  try {
+    const result = await execAsync(command);
+    console.log("🚀 ~ file: runTest.ts:17 ~ runOPATest ~ result:", result);
+    if (result.stderr) {
+      console.log("OPA test failed");
+    }
+    if (result.stdout) {
+      console.log(result.stdout);
+      fs.writeFileSync(
+        "opa_test_results.txt",
+        result.stdout.toString(),
+        "utf-8"
+      );
+    }
+    console.log("OPA test completed successfully");
+    return true;
+  } catch (error) {
+    console.log("🚀 ~ file: runTest.ts:17 ~ runOPATest ~ error:", error);
+    return false;
+  }
 }
 
 const runOPATestWrapper = async () => {
@@ -22,8 +44,12 @@ const runOPATestWrapper = async () => {
     return true;
   }
 
+  console.log("1");
   try {
-    await runOPATest();
+    const testResult = await runOPATest();
+    if (!testResult) {
+      throw new Error("OPA test failed");
+    }
     return true;
   } catch (error) {
     await gitManager.reset();

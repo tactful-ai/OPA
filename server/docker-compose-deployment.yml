@@ -1,5 +1,24 @@
 version: "3.8"
 services:
+
+  middleware:
+  build: .
+  ports:
+    - "3000:3000"
+  environment:
+  #git repo for policy with token to write
+    - GIT_REPO=${GIT_REPO}
+    - NODE_ENV=development
+    - RUN_WITH_DOCKER=true
+    - OPAL_URL=http://opal_server:7002
+    - MAIN_BRANCH=${MAIN_BRANCH}
+    - REMOTE_NAME=org
+    - PORT=${PORT}
+    - RUN_TESTS=true
+    - DATA_PATH=/data.json
+    - GIT_EMAIL=${GIT_EMAIL}
+    - OPA_COMMAND=opa
+
   # When scaling the opal-server to multiple nodes and/or multiple workers, we use
   # a *broadcast* channel to sync between all the instances of opal-server.
   # Under the hood, this channel is implemented by encode/broadcaster (see link below).
@@ -16,15 +35,20 @@ services:
     # by default we run opal-server from latest official image
     image: permitio/opal-server:latest
     environment:
+   
       # the broadcast backbone uri used by opal server workers (see comments above for: broadcast_channel)
       - OPAL_BROADCAST_URI=postgres://postgres:postgres@broadcast_channel:5432/postgres
       # number of uvicorn workers to run inside the opal-server container
       - UVICORN_NUM_WORKERS=4
+      #- OPAL_POLICY_SUBSCRIPTION_DIRS=/main
       # the git repo hosting our policy
       # - if this repo is not public, you can pass an ssh key via `OPAL_POLICY_REPO_SSH_KEY`)
       # - the repo we pass in this example is *public* and acts as an example repo with dummy rego policy
       # - for more info, see: https://docs.opal.ac/tutorials/track_a_git_repo
-      - OPAL_POLICY_REPO_URL=https://github.com/tactful-ai/OPA
+      - OPAL_POLICY_REPO_MAIN_BRANCH=${OPAL_POLICY_REPO_MAIN_BRANCH}
+    
+      - OPAL_POLICY_REPO_URL=${OPAL_POLICY_REPO_URL}
+  
       # in this example we will use a polling interval of 30 seconds to check for new policy updates (git commits affecting the rego policy).
       # however, it is better to utilize a git *webhook* to trigger the server to check for changes only when the repo has new commits.
       # for more info see: https://docs.opal.ac/tutorials/track_a_git_repo
@@ -34,9 +58,12 @@ services:
       # after the initial sources are fetched, the client will subscribe only to update notifications sent by the server.
       - OPAL_DATA_CONFIG_SOURCES={"config":{"entries":[{"url":"http://opal_server:7002/policy-data","topics":["policy_data"],"dst_path":"/static"}]}}
       - OPAL_LOG_FORMAT_INCLUDE_PID=true
-
-       - OPAL_POLICY_REPO_WEBHOOK_SECRET=xxxxxxxxxxxxxxxxxxx
-      #- OPAL_POLICY_REPO_WEBHOOK_PARAMS={"secret_header_name":"x-webhook-token","secret_type":"token","secret_parsing_regex":"(.*)","event_request_key":"gitEvent","push_event_value":"git.push"}
+      #webhook schema for bitbucket
+      - OPAL_POLICY_REPO_WEBHOOK_PARAMS={"secret_header_name":"x-hook-uuid","secret_type":"token","secret_parsing_regex":"(.*)","event_header_name":"x-event-key","event_request_key":null,"push_event_value":"repo:push"}
+      #- OPAL_POLICY_REPO_WEBHOOK_SECRET=${OPAL_POLICY_REPO_WEBHOOK_SECRET}
+      #- OPAL_POLICY_REPO_WEBHOOK_PARAMS={ "secret_header_name":"x-hook-uuid","secret_type":"token","secret_parsing_regex":"(.*)","event_header_name":"x-event-key","event_request_key":None,"push_event_value":"repo:push"}
+      #- OPAL_POLICY_REPO_WEBHOOK_PARAMS={"secret_header_name":"x-hub-signature-256","secret_type":"signature","secret_parsing_regex":"sha256=(.*)","event_header_name":"X-GitHub-Event","event_request_key":None,"push_event_value":"push",}
+       #- OPAL_POLICY_REPO_WEBHOOK_PARAMS={"secret_header_name":"x-webhook-token","secret_type":"token","secret_parsing_regex":"(.*)","event_request_key":"gitEvent","push_event_value":"git.push"}
     ports:
       # exposes opal server on the host machine, you can access the server at: http://localhost:7002
       - "7002:7002"
@@ -44,18 +71,18 @@ services:
       - broadcast_channel
   opal_client:
     # by default we run opal-client from latest official image
-    image: permitio/opal-client:latest
+    image: permitio/opal-client-standalone:latest
     environment:
+      - OPAL_POLICY_STORE_AUTH_TYPE=${OPAL_POLICY_STORE_AUTH_TYPE}
+      - OPAL_POLICY_STORE_AUTH_TOKEN=${OPAL_POLICY_STORE_AUTH_TOKEN}
       - OPAL_SERVER_URL=http://opal_server:7002
       - OPAL_LOG_FORMAT_INCLUDE_PID=true
       - OPAL_INLINE_OPA_LOG_FORMAT=http
+      - OPAL_POLICY_STORE_URL=${OPAL_SERVER_URL}
       - OPAL_SHOULD_REPORT_ON_DATA_UPDATES=True
-      #- OPAL_POLICY_STORE_URL //for stand alone OPAL
-      - OPAL_DEFAULT_UPDATE_CALLBACKS={"callbacks":["http://opal_server:7002/data/callback_report","https://c360-197-133-127-111.ngrok-free.app/opalCallback"]}
-      # Uncomment the following lines to enable storing & loading OPA data from a backup file:
-      # - OPAL_OFFLINE_MODE_ENABLED=true
-    # volumes:
-    #  - opa_backup:/opal/backup:rw
+      - OPAL_DEFAULT_UPDATE_CALLBACKS={"callbacks":["http://opal_server:7002/data/callback_report","http://middleware:3000/opalCallback"]}
+
+
 
     ports:
       # exposes opal client on the host machine, you can access the client at: http://localhost:7766
@@ -63,7 +90,7 @@ services:
       # exposes the OPA agent (being run by OPAL) on the host machine
       # you can access the OPA api that you know and love at: http://localhost:8181
       # OPA api docs are at: https://www.openpolicyagent.org/docs/latest/rest-api/
-      - "8181:8181"
+    
     depends_on:
       - opal_server
     # this command is not necessary when deploying OPAL for real, it is simply a trick for dev environments

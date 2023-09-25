@@ -1,0 +1,31 @@
+# Use the official Node.js image as the base image
+FROM node:latest
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Install OPA
+RUN curl -L -o opa https://openpolicyagent.org/downloads/latest/opa_linux_amd64 && \
+    chmod 755 ./opa && \
+    mv ./opa /usr/local/bin/opa
+# Copy the package.json and package-lock.json files to the container
+COPY package*.json ./
+
+# Install the dependencies
+RUN npm install
+
+
+
+# Copy the rest of the application files to the container
+COPY . .
+
+
+ENV NODE_PATH=./build
+
+RUN npm run build
+# Expose a port (if needed)
+
+# Define the command to run the application
+CMD ["npm", "start"]
+
+

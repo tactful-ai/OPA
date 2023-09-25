@@ -1,8 +1,7 @@
 // Import required libraries and modules
 require("dotenv").config(); // Load environment variables from .env file
-import axios from "axios"; // HTTP client library
 import { Request, Response } from "express"; // Express request and response types
-import handleAsync from "../utils/handelAsync"; // Custom utility to handle asynchronous functions
+import handleAsync from "../utils/handleAsync"; // Custom utility to handle asynchronous functions
 import {
   PermissionModel,
   RoleModel,
@@ -11,7 +10,6 @@ import {
   ScopeModel,
 } from "../DTO/retrieveDTO"; // Custom models for retrieved data
 import opalManager from "../services/OPALManger";
-import { resource, roleWithDescription } from "../DTO/types";
 
 // Endpoint handler to retrieve roles from OPA
 const retrieveRoles = handleAsync(

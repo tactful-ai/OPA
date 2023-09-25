@@ -12,6 +12,8 @@ import {
   savePermissions,
 } from "../controllers/editepermission";
 import opalCallback from "../controllers/callback";
+import { addTag, getTag } from "../controllers/tag";
+import { readdir, updateFiles } from "../controllers/IDE";
 const router = express.Router();
 // roles
 router.post("/roles", addRole);
@@ -35,5 +37,13 @@ router.delete("/permissions", removePermission);
 
 //callback
 router.post("/opalCallback", opalCallback);
+
+//tag
+router.post("/tags", addTag);
+router.get("/tags", getTag);
+
+//IDE
+router.get("/readdir", readdir);
+router.put("/file", updateFiles);
 
 export default router;
