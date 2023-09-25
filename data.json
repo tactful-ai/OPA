@@ -104,7 +104,9 @@
       ]
     },
     "email": {
-      "read": [],
+      "read": [
+        "user"
+      ],
       "send": []
     },
     "movie": {
