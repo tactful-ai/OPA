@@ -65,9 +65,11 @@ In cases of network disruptions, the OPAL client implements a fail-safe mechanis
 
 ![](https://camo.githubusercontent.com/cd8cec2e446f8e72b14b19f34ee646264aad82372b22f4898a6a36374e6c228e/68747470733a2f2f692e6962622e636f2f43766d583872522f73696d706c69666965642d6469616772616d2d686967686c696768742e706e67)
 
+## OUR Architecture  
 ![Alt text](https://github.com/tactful-ai/OPA/blob/dev/Wiki%20Data/Readme%20file/OPAL.png?raw=true)
 
-
+## Sequance Digram
+![](https://res.cloudinary.com/dj0etpud8/image/upload/v1695734730/rosjknijqrnbdw01kdnb.png)
 
 
 -----------
@@ -123,6 +125,7 @@ To get started, ensure you have the following prerequisites installed on your sy
    GIT_EMAIL=#Provide the email address associated with your Git commits. This is used for authorship and identification purposes in Git history.
    DATA_PATH= #path of data file (should be in root)
    PORT: <port_to_run_the_server_default_3000>
+   OPA_COMMAND: opa(linux) or opa.exe(if you run on Windows)
    ```
 
 ## Step 1: Running OPAL using Docker Compose
@@ -167,7 +170,12 @@ To get started, ensure you have the following prerequisites installed on your sy
 
 3. Start the Node.js server:
    ```bash
+   npm run build
    npm start
+   ```
+   or  for development
+    ```bash
+   npm run dev
    ```
 
 4. The Node.js server should now be running and communicating with the OPAL dashboard.
