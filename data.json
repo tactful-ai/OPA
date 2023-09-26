@@ -71,10 +71,6 @@
     "storage": [
       "get"
     ],
-    "resource name": [
-      "scope1",
-      "scope2"
-    ],
     "database": [
       "read",
       "write"
