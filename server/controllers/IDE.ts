@@ -14,7 +14,17 @@ const readdir = handleAsync(async (req: Request, res: Response) => {
   fileManger.IDEContent = [];
   // Get the latest files
   let x = await fileManger.listFilesRecursively(fileManger.OPACodePath);
-  res.send(fileManger.IDEContent);
+  const files = fileManger.IDEContent.map((file) => {
+    return {
+      code: file.code,
+      ID: file.ID,
+      file: file.file,
+      root: file.root,
+      text: file.text,
+      children: file.children,
+    };
+  });
+  res.send(files);
 });
 
 const updateFiles = handleMutexAsync(async (req: Request, res: Response) => {
@@ -24,10 +34,6 @@ const updateFiles = handleMutexAsync(async (req: Request, res: Response) => {
   fileManger.IDEContent = [];
   // Get the latest files
   let x = await fileManger.listFilesRecursively(fileManger.OPACodePath);
-  console.log(
-    "🚀 ~ file: IDE.ts:36 ~ req.body.updatedFiles.map ~ updatedFiles:",
-    req.body.updatedFiles
-  );
 
   // Update files
   await Promise.all(

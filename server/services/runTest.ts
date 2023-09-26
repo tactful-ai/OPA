@@ -25,11 +25,6 @@ async function runOPATest(): Promise<boolean> {
     }
     if (result.stdout) {
       console.log(result.stdout);
-      fs.writeFileSync(
-        "opa_test_results.txt",
-        result.stdout.toString(),
-        "utf-8"
-      );
     }
     console.log("OPA test completed successfully");
     return true;
@@ -44,7 +39,6 @@ const runOPATestWrapper = async () => {
     return true;
   }
 
-  console.log("1");
   try {
     const testResult = await runOPATest();
     if (!testResult) {

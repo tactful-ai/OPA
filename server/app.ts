@@ -4,7 +4,6 @@ import express from "express";
 import retrieveRoutes from "./routes/retrieve";
 import editRouter from "./routes/edit";
 import gitManager from "./services/gitManger";
-import { setupSwagger } from "./services/swagger";
 require("dotenv").config();
 
 // Create an Express app
@@ -36,8 +35,6 @@ app.use(
 );
 
 
-// Setup swagger
-setupSwagger(app);
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
