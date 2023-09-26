@@ -9,10 +9,6 @@ allow := true {
 }
 
 allow := true { 
-   input.role == "developer" 
-}
-
-allow := true { 
   some i
   input.role == data.permissions[input.resource][input.scope][i]
 }
