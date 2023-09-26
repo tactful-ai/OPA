@@ -1,6 +1,7 @@
 package example
 
-default  allow := false                              # unless otherwise defined, allow is false
+default   allow := false       
+ kak                       # unless otherwise defined, allow is false
 
 
 allow := true { 
