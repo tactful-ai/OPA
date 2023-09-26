@@ -121,6 +121,11 @@
       "rate": [
         "user"
       ]
+    },
+    "storage": {
+      "get": [
+        "Retailer"
+      ]
     }
   }
 }
