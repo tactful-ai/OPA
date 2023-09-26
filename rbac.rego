@@ -7,10 +7,7 @@ allow := true {
    input.role == "admin" 
 }
 
-
-
 allow := true { 
   some i
   input.role == data.permissions[input.resource][input.scope][i]
 }
-
