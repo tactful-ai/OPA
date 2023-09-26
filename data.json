@@ -33,10 +33,6 @@
       "description": "description for the role "
     },
     {
-      "role": "test2",
-      "description": "description for the role "
-    },
-    {
       "role": "Retailer",
       "description": "Retailer manages a store's inventory"
     },
