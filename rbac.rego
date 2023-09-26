@@ -7,7 +7,7 @@ allow := true {
    input.role == "admin" 
 }
 
-kak
+
 
 allow := true { 
   some i
