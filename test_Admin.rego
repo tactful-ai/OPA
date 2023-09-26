@@ -1,7 +1,7 @@
 package example
 
 test_admin{
-    allow with input as {
+      allow with input as {
         "role": "user",
         "resource":"email",
         "scope":"read"
