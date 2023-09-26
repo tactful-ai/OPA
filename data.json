@@ -43,6 +43,10 @@
     {
       "role": "Retailer",
       "description": "Retailer manages a store's inventory"
+    },
+    {
+      "role": "role name",
+      "description": "description for the role "
     }
   ],
   "resources": {
