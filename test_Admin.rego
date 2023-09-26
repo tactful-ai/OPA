@@ -7,5 +7,3 @@ test_admin{
         "scope":"read"
     }
 }
-
-
