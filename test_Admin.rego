@@ -7,3 +7,11 @@ test_admin{
         "scope":"read"
     }
 }
+
+test_admin{
+      not allow with input as {
+        "role": "developer",
+        "resource":"email",
+        "scope":"read"
+    }
+}
