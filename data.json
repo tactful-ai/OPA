@@ -1,10 +1,6 @@
 {
   "roles": [
     {
-      "role": "outside user",
-      "description": "not sighup user"
-    },
-    {
       "role": "user",
       "description": "user role"
     },
