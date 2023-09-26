@@ -7,6 +7,8 @@ allow := true {
    input.role == "admin" 
 }
 
+kak
+
 allow := true { 
   some i
   input.role == data.permissions[input.resource][input.scope][i]
