@@ -1,7 +1,7 @@
 package example
 
 default   allow := false       
-                        # unless otherwise defined, allow is false
+ kak                       # unless otherwise defined, allow is false
 
 
 allow := true { 
