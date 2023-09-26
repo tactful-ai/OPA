@@ -69,8 +69,32 @@ In cases of network disruptions, the OPAL client implements a fail-safe mechanis
 ![Alt text](https://github.com/tactful-ai/OPA/blob/dev/Wiki%20Data/Readme%20file/OPAL.png?raw=true)
 
 ## Sequance Digram
-![](https://res.cloudinary.com/dj0etpud8/image/upload/v1695734730/rosjknijqrnbdw01kdnb.png)
+Edit OPA Code
 
+![](https://res.cloudinary.com/dj0etpud8/image/upload/v1695754929/w5eyfqqii1dcsaxmiwgd.png)
+
+Add Tag
+
+![](https://res.cloudinary.com/dj0etpud8/image/upload/v1695755964/jw5ukhf9evjlj8iemvin.png)
+
+
+## Advantage with this Architecture
+
+- **Real-time Adaptability**: Enables real-time updates in OPA for agile policy adjustments.
+
+- **Version Control**: Manages code versions for auditability and rollback capability.
+
+- **Stability Assurance**: Implements validation and error handling for OPA stability.
+
+- **Error Prevention**: Rigorous testing prevents logical and compilation errors.
+
+- **Git Repository Compatibility**: Supports various Git platforms for flexibili
+
+
+## what can go wrong?
+If test failed we discord changes and send failed response
+
+![](https://res.cloudinary.com/dj0etpud8/image/upload/v1695754929/guwqw0bmh6jwr8rnpdw5.png)
 
 -----------
 
