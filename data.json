@@ -49,9 +49,7 @@
       "get"
     ],
     "storage": [
-      "get",
-      "deposit",
-      "widthdraw"
+      "get"
     ],
     "database": [
       "read",
