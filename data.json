@@ -104,7 +104,13 @@
       ]
     },
     "storage": {
-      "get": []
+      "get": [],
+      "deposit": [
+        "Retailer"
+      ],
+      "widthdraw": [
+        "Retailer"
+      ]
     }
   }
 }
