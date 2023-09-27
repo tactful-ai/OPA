@@ -49,7 +49,9 @@
       "get"
     ],
     "storage": [
-      "get"
+      "get",
+      "deposit",
+      "withdraw"
     ],
     "database": [
       "read",
@@ -66,7 +68,9 @@
     "scope2",
     "scope3",
     "scope4",
-    "write"
+    "write",
+    "deposit",
+    "withdraw"
   ],
   "permissions": {
     "book": {
