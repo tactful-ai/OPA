@@ -49,9 +49,7 @@
       "get"
     ],
     "storage": [
-      "get",
-      "deposit",
-      "withdraw"
+      "get"
     ],
     "database": [
       "read",
