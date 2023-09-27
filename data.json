@@ -27,10 +27,6 @@
     {
       "role": "admin",
       "description": "description for the role "
-    },
-    {
-      "role": "Retailer",
-      "description": "Retailer manages a store's inventory"
     }
   ],
   "resources": {
@@ -99,9 +95,7 @@
       ]
     },
     "storage": {
-      "get": [
-        "Retailer"
-      ]
+      "get": []
     }
   }
 }
