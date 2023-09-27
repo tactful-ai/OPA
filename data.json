@@ -49,8 +49,7 @@
       "get"
     ],
     "storage": [
-      "get",
-      "deposit"
+      "get"
     ],
     "database": [
       "read",
